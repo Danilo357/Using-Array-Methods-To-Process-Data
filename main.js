@@ -59,11 +59,11 @@ document.querySelector("#answer5").innerHTML = `answer ${newtitles} `
 // number 6
 
 var oda = items.filter(made => {
-  let madeby = made.who.made
+  let madeby = made.who_made
 
   if (madeby === "i_did") {
     return madeby
   }
 })
 
-document.querySelector("#answer4").innerHTML = `${oda.length} `
+document.querySelector("#answer6").innerHTML = `${oda.length} `
