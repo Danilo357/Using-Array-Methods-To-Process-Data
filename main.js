@@ -6,19 +6,21 @@ var avg = sum / items.length
 
 document.querySelector(
   "#answer1"
-).innerHTML = `The avg of all prices is ${avg.toFixed(2)}`
+).innerHTML = `The avg of all prices is $${avg.toFixed(2)}`
 
 // number 2
 
 var newArr = items.filter(function(a) {
   return a.price > 14 && a.price < 18
 })
-var show = newArr.map(function(a) {
-  return a.title
-})
+var show = newArr
+  .map(function(a) {
+    return a.title
+  })
+  .join("\n\n")
 console.log()
 
-document.querySelector("#answer2").innerHTML = `answer ${show}`
+document.querySelector("#answer2").innerHTML = ` ${show}`
 
 // number 3
 
@@ -26,7 +28,7 @@ var one = items.filter(items => items.currency_code === "GBP")
 var two = one.map(one => one.title)
 var tree = one.map(one => one.price)
 
-document.querySelector("#answer3").innerHTML = `answer, ${two} price ${tree}`
+document.querySelector("#answer3").innerHTML = `${two} price ${tree}`
 
 // number 4
 
@@ -44,17 +46,19 @@ document.querySelector("#answer4").innerHTML = `${newlist} `
 
 // number 5
 
-var materialnumber = items.filter(function(a) {
-  return a.materials.length >= 8
-})
+var materialnumber = items
+  .filter(item => item.materials.length >= 8)
+  .map(item => {
+    let html = `${item.title} has ${item.materials.length} materials:`
+    item.materials.forEach(material => {
+      html += `\n${material}`
+    })
 
-var newtitles = materialnumber.map(d => {
-  let still = `${d.title} has {d.materials.length} materials`
-})
+    return html
+  })
+  .join("\n")
 
-var number = materialnumber.map(daka => daka.madeof)
-
-document.querySelector("#answer5").innerHTML = `answer ${newtitles} `
+document.querySelector("#answer5").innerHTML = materialnumber
 
 // number 6
 
@@ -66,4 +70,6 @@ var oda = items.filter(made => {
   }
 })
 
-document.querySelector("#answer6").innerHTML = `${oda.length} `
+document.querySelector(
+  "#answer6"
+).innerHTML = `${oda.length} were made by their sellers `
